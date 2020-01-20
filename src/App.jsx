@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Routing from './Routing/Router';
-import Header from './components/Header/Header.jsx';
+import Header from './components/Header/Header';
 
 function App() {
   return (
