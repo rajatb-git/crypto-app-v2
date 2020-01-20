@@ -5,7 +5,11 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open --mode development",
-    "build": "webpack --mode production"
+    "clean": "rimraf dist",
+    "build": "npm run clean && webpack --mode production",
+    "test": "jest --config ./jest.config.json --coverage",
+    "test:watch": "npm run test -- --watch",
+    "reset": "rimraf node_modules package-lock.json dist && npm i"
   },
   "author": "",
   "license": "ISC",
@@ -17,8 +21,10 @@
     "css-loader": "^3.4.2",
     "html-loader": "^0.5.5",
     "html-webpack-plugin": "^3.2.0",
+    "jest": "^24.9.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
+    "react-test-renderer": "^16.12.0",
     "sass-loader": "^8.0.2",
     "style-loader": "^1.1.3",
     "webpack": "^4.41.5",
