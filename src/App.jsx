@@ -1,11 +1,13 @@
 import React from 'react';
 
-import Header from './components/Header/Header.jsx';
+import Routing from './Routing/Router';
+import Header from './components/Header/Header';
 
 function App() {
   return (
     <div id="root" className="App">
-        <Header />
+      <Header />
+      <Routing />
     </div>
   );
 }
