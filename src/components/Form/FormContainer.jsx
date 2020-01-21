@@ -1,13 +1,12 @@
-import React, { Component } from "react";
-import ReactDOM from "react-dom";
+import React, { Component } from 'react';
 
-import Input from "../Input/Input.jsx";
+import Input from '../Input/Input';
 
-class FormContainer extends Component {
+export default class FormContainer extends Component {
   constructor() {
     super();
     this.state = {
-      title: ""
+      title: '',
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -28,10 +27,9 @@ class FormContainer extends Component {
           type="text"
           id="seo_title"
           value={title}
-          handleChange={this.handleChange} />
+          handleChange={this.handleChange}
+        />
       </form>
     );
   }
 }
-
-export default FormContainer;
