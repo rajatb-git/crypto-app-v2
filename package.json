@@ -6,7 +6,8 @@
   "scripts": {
     "start": "webpack-dev-server -d --open --mode development",
     "clean": "rimraf dist",
-    "build": "npm run clean && webpack --mode production",
+    "build": "npm run clean && webpack",
+    "build:production": "webpack --mode production",
     "test": "jest --config ./jest.config.json --coverage",
     "test:watch": "npm run test -- --watch",
     "lint": "eslint --ext .js --ext .jsx .",
