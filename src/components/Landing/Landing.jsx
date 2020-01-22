@@ -1,9 +1,21 @@
 import React from 'react';
+import Button from 'react-bootstrap/Button';
 
-const Landing = () => (
-  <div>
-    <h2>Landing</h2>
-  </div>
-);
+import { useAuth } from '../../context/Auth';
+
+const Landing = () => {
+  const { setAuthTokens } = useAuth();
+
+  const logOut = () => {
+    setAuthTokens();
+  };
+
+  return (
+    <div>
+      <h2>Landing</h2>
+      <Button onClick={logOut}>Logout</Button>
+    </div>
+  );
+};
 
 export default Landing;
