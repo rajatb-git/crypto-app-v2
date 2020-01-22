@@ -1,4 +1,11 @@
-.DS_store
+# Files
+.DS_Store
 
-/node_modules/
-/dist/
+# Patterns
+*.env
+
+# Folders
+node_modules/
+dist/
+coverage/
+.vscode/
