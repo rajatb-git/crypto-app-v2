@@ -1,19 +1,18 @@
 name: Node CI
 
-on: [push]
+on: [push, pull_request]
 
 jobs:
   build:
-
-    runs-on: ubuntu-latest
-
+    name: Build Job
+    runs-on: macos-latest
     strategy:
       matrix:
-        node-version: [12.x]
+        node: [10, 12]
 
     steps:
     - uses: actions/checkout@v1
-    - name: Use Node.js ${{ matrix.node-version }}
+    - name: Use Node.js ${{ matrix.node }}
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
@@ -22,5 +21,3 @@ jobs:
         npm ci
         npm run build:production
         npm test
-      env:
-        CI: true
