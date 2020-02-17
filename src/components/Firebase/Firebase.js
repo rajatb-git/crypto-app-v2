@@ -1,4 +1,4 @@
-import app from 'firebase/app';
+import firebase from 'firebase';
 
 const config = {
   apiKey: process.env.FIREBASE_API_KEY,
@@ -11,17 +11,34 @@ const config = {
 
 class Firebase {
   constructor() {
-    app.initializeApp(config);
+    if (!firebase.apps.length) {
+      firebase.initializeApp(config, 'crypto-app-v2');
 
-    this.auth = app.auth();
+      this.auth = firebase.app().auth();
+      this.user = this.auth.currentUser;
+    }
   }
 
   doCreateUserWithEmailAndPassword(email, password) {
     return this.auth.createUserWithEmailAndPassword(email, password);
   }
 
-  doSignInWithEmailAndPassword(email, password) {
-    return this.auth.signInWithEmailAndPassword(email, password);
+  async doSignInWithEmailAndPassword(email, password) {
+    const result = await this.auth
+      .signInWithEmailAndPassword(email, password)
+      .then((userCred) => {
+        this.user = userCred.user;
+        return true;
+      }).catch((error) => {
+        return error;
+      });
+
+    return result;
+  }
+
+  isLoggedIn() {
+    this.user = this.auth.currentUser;
+    return Boolean(this.user);
   }
 // doSignOut = () => this.auth.signOut();
 // doPasswordReset = email => this.auth.sendPasswordResetEmail(email);

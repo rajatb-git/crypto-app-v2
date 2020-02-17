@@ -5,12 +5,12 @@ import PropTypes from 'prop-types';
 import { useAuth } from '../context/Auth';
 
 const PrivateRoute = ({ component: Component, ...rest }) => {
-  const { authTokens } = useAuth();
+  const { authActions } = useAuth();
 
   return (
     <Route
       {...rest}
-      render={(props) => (authTokens ? (<Component {...props} />) : (<Redirect to="/login" />))}
+      render={(props) => (authActions.isLoggedIn() ? (<Component {...props} />) : (<Redirect to="/login" />))}
     />
   );
 };

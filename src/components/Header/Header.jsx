@@ -1,21 +1,18 @@
 import React from 'react';
-import Navbar from 'react-bootstrap/Navbar';
-import Nav from 'react-bootstrap/Nav';
 import { Link } from 'react-router-dom';
 
+import './Header.scss';
+
 const Header = () => (
-  <Navbar bg="dark" variant="dark" expand="lg">
-    <Navbar.Brand href="#home">Crypto App</Navbar.Brand>
-    <Navbar.Toggle aria-controls="basic-navbar-nav" />
-    <Navbar.Collapse id="basic-navbar-nav">
-      <Nav className="mr-auto">
-        <Link className="nav-link" to="/">Home</Link>
-        <Link className="nav-link" to="/admin">Admin</Link>
-        <Link className="nav-link" to="/signup">Signup</Link>
-        <Link className="nav-link" to="/login">Login</Link>
-      </Nav>
-    </Navbar.Collapse>
-  </Navbar>
+  <nav className="navbar">
+    <div className="navbar__brand">
+      <a className="navbar__brand--link" href="#home">Crypto App</a>
+    </div>
+    <div />
+    <div className="navbar__actions">
+      <Link className="navbar__actions--link" to="/news">News</Link>
+    </div>
+  </nav>
 );
 
 export default Header;

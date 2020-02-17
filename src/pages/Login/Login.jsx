@@ -1,35 +1,45 @@
 import React, { useState } from 'react';
 import { Link, Redirect } from 'react-router-dom';
-import axios from 'axios';
-import Form from 'react-bootstrap/Form';
-import Button from 'react-bootstrap/Button';
-import Card from 'react-bootstrap/Card';
 
-import styles from './Login.scss';
+import './Login.scss';
 import logoImg from '../../img/logo.png';
 import { useAuth } from '../../context/Auth';
 
 const Login = () => {
-  const { authTokens, setAuthTokens } = useAuth();
+  // const { authTokens, setAuthTokens } = useAuth();
+  const { authActions } = useAuth();
 
-  const [isLoggedIn, setLoggedIn] = useState(Boolean(authTokens));
+  // const [isLoggedIn, setLoggedIn] = useState(Boolean(authTokens));
+  const [isLoggedIn, setLoggedIn] = useState(authActions.isLoggedIn());
   const [isError, setIsError] = useState(false);
-  const [userName, setUserName] = useState(false);
-  const [password, setPassword] = useState(false);
+
+  let errorMsg = 'The username or password provided were incorrect!';
 
   const postLogin = () => {
-    axios.post('http://localhost:3000/test', {
-      userName, password
-    }).then((result) => {
-      if (result.status === 200) {
-        setAuthTokens(result.data);
-        setLoggedIn(true);
-      } else {
+    const [email, password] = [document.getElementById('email').value, document.getElementById('password').value];
+    authActions.doSignInWithEmailAndPassword(email, password)
+      .then((response) => {
+        return response ? setLoggedIn(true) : setLoggedIn(false);
+      })
+      .catch((error) => {
+        if (error) {
+          errorMsg = error.message;
+        }
+        setLoggedIn(false);
         setIsError(true);
-      }
-    }).catch((e) => {
-      setIsError(true);
-    });
+      });
+    // axios.post('http://localhost:3000/test', {
+    //   userName, password
+    // }).then((result) => {
+    //   if (result.status === 200) {
+    //     setAuthTokens(result.data);
+    //     setLoggedIn(true);
+    //   } else {
+    //     setIsError(true);
+    //   }
+    // }).catch((e) => {
+    //   setIsError(true);
+    // });
   };
 
   if (isLoggedIn) {
@@ -38,29 +48,25 @@ const Login = () => {
 
   return (
     <div>
-      <Card className={styles.loginCard}>
+      {/* <Card className="card">
         <Card.Img variant="top" src={logoImg} />
         <Card.Header style={{ textAlign: 'center' }}><h3>Crypto App</h3></Card.Header>
         <Card.Body>
-          { isError && <p>The username or password provided were incorrect!</p> }
+          <p className="card__error">{ isError && <p>{ errorMsg }</p> }</p>
           <Form>
             <Form.Group controlId="formBasicEmail">
               <Form.Control
+                id="email"
                 type="email"
                 placeholder="Email"
-                onChange={(e) => {
-                  setUserName(e.target.value);
-                }}
               />
             </Form.Group>
 
             <Form.Group controlId="formBasicPassword">
               <Form.Control
+                id="password"
                 type="password"
                 placeholder="Password"
-                onChange={(e) => {
-                  setPassword(e.target.value);
-                }}
               />
             </Form.Group>
 
@@ -70,7 +76,7 @@ const Login = () => {
         <Card.Footer className="text-muted">
           <Link to="/signup">Don't have an account?</Link>
         </Card.Footer>
-      </Card>
+      </Card> */}
     </div>
   );
 };

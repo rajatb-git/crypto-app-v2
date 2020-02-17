@@ -1,5 +1,5 @@
 ## Crypto App V2
-This application is written in javascript built using React, Babel, Webpack, Firebase, ESLint, Jest, SASS, Axios, Bootstrap etc.
+This application is written in javascript built using React, Babel, Webpack, Firebase, ESLint, Jest, SASS, axios etc.
 
 It is a redesigned version of the Crypto-app and is currently in progress.
 

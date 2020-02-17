@@ -1,0 +1,41 @@
+@import '../../styles/resources.scss';
+
+.button-regular {
+  padding: 5px;
+  color: $color-medium;
+  background: $color-medium;
+  text-transform: capitalize;
+  border-radius: 2px;
+  transition-duration: 0.2s;
+
+  &:hover {
+    color: $color-medium;
+    background: $color-medium;
+    border: 1px solid $color-medium;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.button-icon {
+  padding: 3px;
+  bordeR: none;
+  border-radius: 100%;
+  background: transparent;
+  color: $color-medium;
+  transition-duration: 0.2s;
+  font-size: 15px;
+  width: 25px;
+  height: 25px;
+
+  &:hover {
+    background: $color-medium;
+    color: $color-medium;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}

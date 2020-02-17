@@ -1,4 +1,8 @@
-.login-card {
+.card {
     width: 30rem;
     margin: 5rem auto;
+
+    &__error {
+        color: red;
+    }
 }

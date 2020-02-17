@@ -10,5 +10,13 @@
                 "dynamic-import-node"
             ]
         }
-    }
+    },
+    "plugins": [
+        [
+            "@babel/plugin-transform-runtime",
+            {
+                "regenerator": true
+            }
+        ]
+    ]
 }

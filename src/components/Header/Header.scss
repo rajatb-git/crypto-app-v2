@@ -1,0 +1,37 @@
+@import '../../styles/resources.scss';
+
+.navbar {
+  z-index: 9999;
+  background: $color-black;
+  color: $color-light;
+  box-shadow: 0px 1px 5px 0px rgba(0,0,0,0.7), 0px 3px 10px 0px rgba(0,0,0,0.5);
+  display: grid;
+  justify-content: space-between;
+  grid-template-columns: auto auto auto;
+  grid-gap: 20px;
+  padding: 20px;
+  width: 100%;
+  position: fixed;
+
+  &__brand {
+    font-size: 25px;
+    font-weight: 600;
+    margin-left: 20px;
+
+    &--link {
+      text-decoration: none;
+      color: inherit;
+    }
+  }
+
+  &__actions {
+    margin-right: 50px;
+
+    &--link {
+      color: inherit;
+      padding: 10px;
+      text-decoration: none;
+      vertical-align: -webkit-baseline-middle;
+    }
+  }
+}

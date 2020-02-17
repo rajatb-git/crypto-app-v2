@@ -3,6 +3,7 @@ const DotEnv = require('dotenv-webpack');
 
 module.exports = {
   entry: './src/index.js',
+  devtool: 'eval-source-map',
   resolve: {
     extensions: ['.jsx', '.js'],
   },
@@ -31,10 +32,10 @@ module.exports = {
           },
           {
             loader: 'css-loader',
-            options: {
-              modules: true,
-              localsConvention: 'camelCase',
-            },
+            // options: {
+            //   modules: true,
+            //   localsConvention: 'camelCase',
+            // },
           },
           {
             loader: 'sass-loader',
@@ -54,6 +55,10 @@ module.exports = {
             },
           },
         ],
+      },
+      {
+        test: /\.txt$/i,
+        use: 'raw-loader'
       },
     ],
   },
