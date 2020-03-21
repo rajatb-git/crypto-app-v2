@@ -1,82 +1,66 @@
-import React, { useState } from 'react';
-import { Link, Redirect } from 'react-router-dom';
+import React, { useState, useContext } from 'react';
+import { Link, useHistory } from 'react-router-dom';
 
 import './Login.scss';
 import logoImg from '../../img/logo.png';
-import { useAuth } from '../../context/Auth';
+import { FirebaseContext } from '../../firebase';
+import Input from '../../components/Input/Input';
 
 const Login = () => {
   // const { authTokens, setAuthTokens } = useAuth();
-  const { authActions } = useAuth();
+  const firebase = useContext(FirebaseContext);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const history = useHistory();
 
-  // const [isLoggedIn, setLoggedIn] = useState(Boolean(authTokens));
-  const [isLoggedIn, setLoggedIn] = useState(authActions.isLoggedIn());
-  const [isError, setIsError] = useState(false);
-
-  let errorMsg = 'The username or password provided were incorrect!';
-
-  const postLogin = () => {
-    const [email, password] = [document.getElementById('email').value, document.getElementById('password').value];
-    authActions.doSignInWithEmailAndPassword(email, password)
-      .then((response) => {
-        return response ? setLoggedIn(true) : setLoggedIn(false);
-      })
-      .catch((error) => {
-        if (error) {
-          errorMsg = error.message;
-        }
-        setLoggedIn(false);
-        setIsError(true);
-      });
-    // axios.post('http://localhost:3000/test', {
-    //   userName, password
-    // }).then((result) => {
-    //   if (result.status === 200) {
-    //     setAuthTokens(result.data);
-    //     setLoggedIn(true);
-    //   } else {
-    //     setIsError(true);
-    //   }
-    // }).catch((e) => {
-    //   setIsError(true);
-    // });
-  };
-
-  if (isLoggedIn) {
-    return (<Redirect to="/" />);
+  if (firebase.getUser()) {
+    history.push('/news');
   }
 
+  const signIn = async e => {
+    e.preventDefault();
+
+    await firebase
+      .doSignInWithEmailAndPassword(
+        document.getElementById('email').value,
+        document.getElementById('password').value
+      )
+      .then(user => {
+        if (user.uid) {
+          setErrorMessage(null);
+          history.push('/home');
+        } else {
+          setErrorMessage('Something went wrong!');
+        }
+      }).catch(error => {
+        setErrorMessage(error);
+      });
+  };
+
   return (
-    <div>
-      {/* <Card className="card">
-        <Card.Img variant="top" src={logoImg} />
-        <Card.Header style={{ textAlign: 'center' }}><h3>Crypto App</h3></Card.Header>
-        <Card.Body>
-          <p className="card__error">{ isError && <p>{ errorMsg }</p> }</p>
-          <Form>
-            <Form.Group controlId="formBasicEmail">
-              <Form.Control
-                id="email"
-                type="email"
-                placeholder="Email"
-              />
-            </Form.Group>
+    <div className="login">
+      <div className="login__img"><img src={logoImg} alt="Logo" /></div>
+      <div className="login__header"><h3>Crypto App</h3></div>
+      <div className="login__body">
+        <p className="login__error">{ errorMessage && <p>{ errorMessage }</p> }</p>
+        <form className="form">
+          <Input
+            id="email"
+            type="email"
+            placeholder="Email"
+          />
 
-            <Form.Group controlId="formBasicPassword">
-              <Form.Control
-                id="password"
-                type="password"
-                placeholder="Password"
-              />
-            </Form.Group>
+          <Input
+            id="password"
+            type="password"
+            placeholder="Password"
+          />
 
-            <Button variant="primary" block onClick={postLogin}>Submit</Button>
-          </Form>
-        </Card.Body>
-        <Card.Footer className="text-muted">
-          <Link to="/signup">Don't have an account?</Link>
-        </Card.Footer>
-      </Card> */}
+          <button className="form__submit" onClick={(e) => signIn(e)} type="button">Submit</button>
+        </form>
+      </div>
+      <div className="login__footer">
+        <Link to="/signup">Don't have an account?</Link>
+      </div>
     </div>
   );
 };

@@ -3,15 +3,15 @@ import { BrowserRouter as Router } from 'react-router-dom';
 
 import Routing from './Routing/Router';
 import Header from './components/Header/Header';
-import { AuthContext } from './context/Auth';
+import Firebase, { FirebaseContext } from './firebase';
 
 const App = () => (
-  <AuthContext.Provider>
+  <FirebaseContext.Provider value={new Firebase()}>
     <Router>
       <Header />
       <Routing />
     </Router>
-  </AuthContext.Provider>
+  </FirebaseContext.Provider>
 );
 
 export default App;

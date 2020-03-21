@@ -32,6 +32,19 @@
       padding: 10px;
       text-decoration: none;
       vertical-align: -webkit-baseline-middle;
+      font-size: 16px;
+    }
+
+    &--button {
+      background: none;
+      border: none;
+      color: inherit;
+      padding: 10px;
+      vertical-align: -webkit-baseline-middle;
+      font-size: 16px;
+      font-family: 'Open Sans', sans-serif;
+      outline: none;
+      cursor: pointer;
     }
   }
 }

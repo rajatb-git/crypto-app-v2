@@ -1,22 +1,23 @@
 {
-    "presets": [
-        "@babel/preset-env",
-        "@babel/preset-react"
+  "presets": ["@babel/preset-env", "@babel/preset-react"],
+  "sourceMaps": true,
+  "env": {
+    "test": {
+      "plugins": ["dynamic-import-node"]
+    }
+  },
+  "plugins": [
+    [
+      "@babel/plugin-transform-runtime",
+      {
+        "regenerator": true
+      }
     ],
-    "sourceMaps": true,
-    "env": {
-        "test": {
-            "plugins": [
-                "dynamic-import-node"
-            ]
-        }
-    },
-    "plugins": [
-        [
-            "@babel/plugin-transform-runtime",
-            {
-                "regenerator": true
-            }
-        ]
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
     ]
+  ]
 }

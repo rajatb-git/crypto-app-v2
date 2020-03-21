@@ -24,6 +24,9 @@ module.exports = {
   rules: {
     'react/jsx-props-no-spreading': 'off',
     'react/require-default-props': 'off',
-    'comma-dangle': 'off'
-  }
+    'comma-dangle': 'off',
+    'object-curly-newline': 'off',
+    'arrow-parens': 'off'
+  },
+  parser: "babel-eslint"
 };
