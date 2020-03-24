@@ -1,32 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import './Input.scss';
+
 const Input = ({
-  label, text, type, id, defaultValue, handleChange, placeholder
+  label, id, ...rest
 }) => (
-  <div className="form-group">
-    { label && <label htmlFor={label}>{text}</label> }
+  <div className="input">
+    { label && <label className="input__label" htmlFor={id}>{label}</label> }
 
     <input
-      type={type}
-      className="form-control"
       id={id}
-      defaultValue={defaultValue}
-      onChange={handleChange}
-      placeholder={placeholder}
-      required
+      className="input__control"
+      {...rest}
     />
   </div>
 );
 
 Input.propTypes = {
   label: PropTypes.string,
-  text: PropTypes.string,
-  type: PropTypes.string.isRequired,
-  id: PropTypes.string,
-  defaultValue: PropTypes.string,
-  handleChange: PropTypes.func,
-  placeholder: PropTypes.string
+  id: PropTypes.string
 };
 
 export default Input;

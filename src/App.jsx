@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 import Routing from './Routing/Router';
-import Header from './components/Header/Header';
+import { Header } from './components';
 import Firebase, { FirebaseContext } from './firebase';
 
 const App = () => (

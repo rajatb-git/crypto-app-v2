@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import './Card.scss';
 
 const Card = ({
-  heading, article, imgSrc, footer
+  heading, imgSrc, footer, children, article
 }) => (
   <div className="ccard">
     { imgSrc && (
@@ -18,12 +18,18 @@ const Card = ({
       <header className="ccard__header">
         {heading}
       </header>
-    ) }
+    )}
 
     { article && (
       <article className="ccard__article">
         {article}
       </article>
+    )}
+
+    {children && (
+      <div className="ccard__content">
+        {children}
+      </div>
     )}
 
     <Footer footer={footer} />
@@ -32,6 +38,7 @@ const Card = ({
 
 Card.propTypes = {
   heading: PropTypes.string,
+  children: PropTypes.element,
   article: PropTypes.string,
   imgSrc: PropTypes.string,
   footer: PropTypes.arrayOf(PropTypes.shape({
@@ -45,6 +52,7 @@ const Footer = ({ footer }) => {
   if (footer && footer.length > 0) {
     const buttons = footer.map((x) => (
       <Button
+        type={x.type}
         icon={x.icon}
         text={x.text}
         onClick={x.onClick}

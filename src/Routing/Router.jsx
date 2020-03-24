@@ -2,9 +2,7 @@ import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 import PrivateRoute from './PrivateRoute';
 
-import News from '../components/News/News';
-import Login from '../pages/Login/Login';
-import Signup from '../pages/Signup';
+import { News, Login, Signup } from '../pages';
 
 const Routing = () => (
   <div>

@@ -35,7 +35,10 @@ class Firebase {
       window.sessionStorage.setItem('user', JSON.stringify(this.user));
       return this.user;
     })
-    .catch(error => errorCodes[error.code]);
+    .catch(error => {
+      console.log(error);
+      throw errorCodes[error.code];
+    });
 
   doSignOut = () => {
     window.sessionStorage.clear();

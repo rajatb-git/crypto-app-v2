@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import logoImg from '../img/logo.png';
-import Input from '../components/Input/Input';
+import logoImg from '../../img/logo.png';
+import { Input } from '../../components';
 
 const Signup = () => (
   // <div className="signup">

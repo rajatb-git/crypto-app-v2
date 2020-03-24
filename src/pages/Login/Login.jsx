@@ -4,7 +4,7 @@ import { Link, useHistory } from 'react-router-dom';
 import './Login.scss';
 import logoImg from '../../img/logo.png';
 import { FirebaseContext } from '../../firebase';
-import Input from '../../components/Input/Input';
+import { Input, Button, Card } from '../../components';
 
 const Login = () => {
   // const { authTokens, setAuthTokens } = useAuth();
@@ -25,7 +25,7 @@ const Login = () => {
         document.getElementById('password').value
       )
       .then(user => {
-        if (user.uid) {
+        if (user && user.uid) {
           setErrorMessage(null);
           history.push('/home');
         } else {
@@ -36,31 +36,61 @@ const Login = () => {
       });
   };
 
+  const footer = [{
+    text: 'Login',
+    onClick: (e) => signIn(e)
+  }];
+
   return (
     <div className="login">
-      <div className="login__img"><img src={logoImg} alt="Logo" /></div>
+      {/* <div className="login__img"><img src={logoImg} alt="Logo" /></div>
       <div className="login__header"><h3>Crypto App</h3></div>
       <div className="login__body">
-        <p className="login__error">{ errorMessage && <p>{ errorMessage }</p> }</p>
+        { errorMessage && <p className="login__error">{ errorMessage }</p> }
         <form className="form">
           <Input
             id="email"
             type="email"
             placeholder="Email"
+            defaultValue="test@test.com"
           />
 
           <Input
             id="password"
             type="password"
             placeholder="Password"
+            defaultValue="helloworld"
           />
 
-          <button className="form__submit" onClick={(e) => signIn(e)} type="button">Submit</button>
+          <Button onClick={(e) => signIn(e)} text="Submit" />
         </form>
       </div>
       <div className="login__footer">
         <Link to="/signup">Don't have an account?</Link>
-      </div>
+      </div> */}
+
+      <Card heading="Crypto App" imgSrc={logoImg} footer={footer}>
+        <div className="login__body">
+          { errorMessage && <p className="login__error">{ errorMessage }</p> }
+          <form className="form">
+            <Input
+              id="email"
+              type="email"
+              placeholder="Email"
+              defaultValue="test@test.com"
+            />
+
+            <Input
+              id="password"
+              type="password"
+              placeholder="Password"
+              defaultValue="helloworld"
+            />
+
+            {/* <Button onClick={(e) => signIn(e)} text="Submit" /> */}
+          </form>
+        </div>
+      </Card>
     </div>
   );
 };

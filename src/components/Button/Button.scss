@@ -1,21 +1,22 @@
 @import '../../styles/resources.scss';
 
+.button {
+  outline: none;
+  cursor: pointer;
+}
+
 .button-regular {
   padding: 5px;
-  color: $color-medium;
+  color: $color-dark;
   background: $color-medium;
   text-transform: capitalize;
   border-radius: 2px;
   transition-duration: 0.2s;
+  border: none;
 
   &:hover {
     color: $color-medium;
-    background: $color-medium;
-    border: 1px solid $color-medium;
-  }
-
-  &:focus {
-    outline: none;
+    background: $color-dark;
   }
 }
 
@@ -32,10 +33,6 @@
 
   &:hover {
     background: $color-medium;
-    color: $color-medium;
-  }
-
-  &:focus {
-    outline: none;
+    color: $color-dark;
   }
 }

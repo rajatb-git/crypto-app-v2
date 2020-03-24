@@ -5,6 +5,7 @@ const errorCodes = {
   'auth/invalid-api-key': 'Oops! Something went wrong!',
   'auth/invalid-user-token': 'Unauthorized access!',
   'auth/invalid-tenant-id': 'Oops! Something went wrong!',
+  'auth/invalid-email': 'The email address is badly formatted!',
   'auth/network-request-failed': 'Network error occured. Please try again!',
   'auth/operation-not-allowed': 'Oops! Something went wrong!',
   'auth/requires-recent-login': 'There is some suspicious login activity associated with this account. Please try again after some time!',

@@ -1,9 +1,11 @@
-.login {
-    padding: 100px 50px 50px 50px;
-    width: 30rem;
-    margin: 5rem auto;
+@import '../../styles/resources.scss';
 
-    &__error {
-        color: red;
-    }
+.login {
+  padding: 100px 50px 50px 50px;
+
+  .ccard__header {
+    text-align: center;
+    padding-bottom: 10px;
+    font-size: 25px;
+  }
 }
