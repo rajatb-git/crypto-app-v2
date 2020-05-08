@@ -1,7 +1,10 @@
 .news {
   padding: 100px 50px 50px 50px;
-  display: grid;
-  justify-content: space-between;
-  grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
-  grid-gap: 50px;
+  
+  &__grid {
+    display: grid;
+    justify-content: space-evenly;
+    grid-template-columns: repeat(auto-fill, minmax(400px, 400px));
+    grid-gap: 50px;
+  }
 }

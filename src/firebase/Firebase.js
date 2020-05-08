@@ -1,5 +1,6 @@
 import app from 'firebase/app';
 import 'firebase/auth';
+
 import errorCodes from './firebaseErrorCodes';
 
 const firebaseConfig = {
@@ -36,6 +37,7 @@ class Firebase {
       return this.user;
     })
     .catch(error => {
+      // eslint-disable-next-line no-console
       console.log(error);
       throw errorCodes[error.code];
     });
@@ -45,6 +47,19 @@ class Firebase {
     this.auth.signOut().then(() => {
       this.user = null;
     });
+  };
+
+  fetchUserToken = async () => {
+    await this.auth.onAuthStateChanged(user => {
+      if (!user) window.sessionStorage.clear();
+      this.user = user;
+    });
+
+    return this.auth.currentUser.getIdToken(true)
+      .then(idToken => idToken)
+      .catch(error => {
+        throw error.message;
+      });
   };
 
   getUser = () => this.user;

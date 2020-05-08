@@ -5,7 +5,7 @@ import Button from '../Button/Button';
 import './Card.scss';
 
 const Card = ({
-  heading, imgSrc, footer, children, article
+  heading, imgSrc, footer, children, article, timestamp
 }) => (
   <div className="ccard">
     { imgSrc && (
@@ -18,6 +18,12 @@ const Card = ({
       <header className="ccard__header">
         {heading}
       </header>
+    )}
+
+    { timestamp && (
+      <p className="ccard__timestamp">
+        {timestamp}
+      </p>
     )}
 
     { article && (
@@ -41,6 +47,7 @@ Card.propTypes = {
   children: PropTypes.element,
   article: PropTypes.string,
   imgSrc: PropTypes.string,
+  timestamp: PropTypes.string,
   footer: PropTypes.arrayOf(PropTypes.shape({
     text: PropTypes.string,
     icon: PropTypes.element,
